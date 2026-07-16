@@ -10,8 +10,8 @@ O [pc_health_check.bat](pc_health_check.bat) executa, em ordem, as seguintes eta
 |---|---------|-----------|
 | 1 | `DISM /Online /Cleanup-Image /RestoreHealth` | Repara o repositório de componentes do Windows (WinSxS), usado como fonte pelo SFC |
 | 2 | `DISM /Online /Cleanup-Image /StartComponentCleanup` | Remove versões antigas de componentes já substituídos, liberando espaço em disco |
-| 3 | `sfc /scannow` | Verifica e corrige arquivos do sistema usando o repositório já reparado |
-| 4 | `defrag C: /O /U` | Otimiza o disco C: (desfragmentação em HDD ou TRIM em SSD, conforme o tipo de disco) |
+| 3 | `defrag C: /O /U` | Otimiza o disco C: (desfragmentação em HDD ou TRIM em SSD, conforme o tipo de disco) |
+| 4 | `sfc /scannow` | Verifica e corrige arquivos do sistema usando o repositório já reparado |
 | 5 | `chkdsk %SystemDrive% /r /f` | Agenda verificação completa do disco do sistema para a próxima inicialização |
 
 Ao final, o computador é **reiniciado automaticamente em 30 segundos** para que o CHKDSK agendado seja executado durante o boot.

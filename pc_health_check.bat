@@ -13,11 +13,11 @@ cd /d "%~dp0"
 ::      (remove versoes antigas de componentes ja substituidos,
 ::       liberando espaco em disco - roda depois do RestoreHealth
 ::       para nao remover versoes que poderiam servir de reparo)
-::   3) sfc /scannow
-::      (corrige arquivos do sistema usando o repositorio ja reparado)
-::   4) defrag C: /O
+::   3) defrag C: /O
 ::      (otimiza o disco local C: - desfragmenta ou faz TRIM,
 ::       dependendo do tipo de disco)
+::   4) sfc /scannow
+::      (corrige arquivos do sistema usando o repositorio ja reparado)
 ::   5) chkdsk /r /f no disco do sistema (roda no proximo boot)
 ::   6) Reinicializacao automatica do computador
 :: ============================================================
@@ -48,15 +48,15 @@ echo       (limpa componentes antigos do WinSxS, libera espaco em disco)
 DISM /Online /Cleanup-Image /StartComponentCleanup
 echo.
 
-:: --- ETAPA 3: SFC ---
-echo [3/5] Executando: sfc /scannow
-echo       (pode levar varios minutos, aguarde...)
-sfc /scannow
+:: --- ETAPA 3: Otimizacao do disco local C: ---
+echo [3/5] Executando: defrag C: /O
+defrag C: /O /U
 echo.
 
-:: --- ETAPA 4: Otimizacao do disco local C: ---
-echo [4/5] Executando: defrag C: /O
-defrag C: /O /U
+:: --- ETAPA 4: SFC ---
+echo [4/5] Executando: sfc /scannow
+echo       (pode levar varios minutos, aguarde...)
+sfc /scannow
 echo.
 
 :: --- ETAPA 5: CHKDSK no disco do sistema ---
