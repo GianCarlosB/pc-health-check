@@ -64,7 +64,9 @@ echo.
 echo [5/5] Agendando: chkdsk %SystemDrive% /r /f
 echo       O disco do sistema esta em uso, entao o Windows vai
 echo       executar essa verificacao na proxima inicializacao.
-echo Y| chkdsk %SystemDrive% /r /f
+:: Responde "S" (Sim) ao prompt de agendamento do CHKDSK.
+:: Em Windows em ingles, trocar por "echo Y|" (Yes).
+echo S| chkdsk %SystemDrive% /r /f
 echo.
 
 :: --- Pausa antes do reinicio ---
