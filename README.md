@@ -14,7 +14,7 @@ O [pc_health_check.bat](pc_health_check.bat) executa, em ordem, as seguintes eta
 | 4 | `sfc /scannow` | Verifica e corrige arquivos do sistema usando o repositório já reparado |
 | 5 | `chkdsk %SystemDrive% /r /f` | Agenda verificação completa do disco do sistema para a próxima inicialização |
 
-Ao final, o computador é **reiniciado automaticamente em 30 segundos** para que o CHKDSK agendado seja executado durante o boot.
+Ao final, o script **pausa e aguarda o usuário pressionar uma tecla**; após a confirmação, o computador é **reiniciado em 30 segundos** para que o CHKDSK agendado seja executado durante o boot.
 
 ### Por que essa ordem?
 
@@ -33,7 +33,7 @@ Ao final, o computador é **reiniciado automaticamente em 30 segundos** para que
 1. Dê um duplo clique em `pc_health_check.bat` (ou execute pelo Prompt de Comando).
 2. Confirme a solicitação de elevação do UAC, se aparecer.
 3. Aguarde a conclusão das etapas — o processo pode demorar bastante, principalmente o DISM e o SFC.
-4. O computador será reiniciado automaticamente ao final e o CHKDSK rodará durante a inicialização.
+4. Ao final, pressione qualquer tecla quando solicitado — o computador será reiniciado em 30 segundos e o CHKDSK rodará durante a inicialização.
 
 ### Cancelar o reinício automático
 
@@ -45,6 +45,6 @@ shutdown /a
 
 ## Avisos
 
-- **Salve todo o seu trabalho antes de executar** — o computador será reiniciado ao final sem confirmação adicional.
+- **Salve todo o seu trabalho antes de executar** — ao final, após você pressionar uma tecla na pausa de confirmação, o computador será reiniciado.
 - A verificação do CHKDSK com `/r` durante o boot pode levar de vários minutos a algumas horas, dependendo do tamanho e do estado do disco.
 - O script assume que o sistema está instalado no disco `C:` para a etapa de otimização (`defrag`).

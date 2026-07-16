@@ -19,7 +19,8 @@ cd /d "%~dp0"
 ::   4) sfc /scannow
 ::      (corrige arquivos do sistema usando o repositorio ja reparado)
 ::   5) chkdsk /r /f no disco do sistema (roda no proximo boot)
-::   6) Reinicializacao automatica do computador
+::   6) Pausa aguardando o usuario pressionar uma tecla e, em
+::      seguida, reinicializacao do computador
 :: ============================================================
 
 :: --- Verifica se esta rodando como Administrador ---
@@ -64,6 +65,12 @@ echo [5/5] Agendando: chkdsk %SystemDrive% /r /f
 echo       O disco do sistema esta em uso, entao o Windows vai
 echo       executar essa verificacao na proxima inicializacao.
 echo Y| chkdsk %SystemDrive% /r /f
+echo.
+
+:: --- Pausa antes do reinicio ---
+echo Todas as etapas foram executadas.
+echo Pressione qualquer tecla para prosseguir com o REINICIO do computador...
+pause >nul
 echo.
 
 echo ============================================================
