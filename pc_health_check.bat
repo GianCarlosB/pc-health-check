@@ -87,5 +87,10 @@ echo.
 
 shutdown /r /t 30 /c "Reiniciando para concluir a verificacao de disco (CHKDSK) apos PC Health Check."
 
+:: Mantem a janela aberta para leitura das mensagens finais.
+:: O reinicio agendado acima continua contando em segundo plano.
+echo.
+pause
+
 endlocal
 exit /b
