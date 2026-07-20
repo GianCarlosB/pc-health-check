@@ -20,7 +20,7 @@ cd /d "%~dp0"
 ::      (corrige arquivos do sistema usando o repositorio ja reparado)
 ::   5) chkdsk /r /f no disco do sistema (roda no proximo boot)
 ::   6) Pausa aguardando o usuario pressionar uma tecla e, em
-::      seguida, reinicializacao do computador
+::      seguida, agendamento da reinicializacao do computador
 :: ============================================================
 
 :: --- Verifica se esta rodando como Administrador ---
@@ -69,28 +69,22 @@ echo       executar essa verificacao na proxima inicializacao.
 echo S| chkdsk %SystemDrive% /r /f
 echo.
 
-:: --- Pausa antes do reinicio ---
-echo Todas as etapas foram executadas.
+echo ============================================================
+echo   Todas as verificacoes foram executadas.
+echo   Ao prosseguir, o computador sera REINICIADO em 30 segundos
+echo   para que o CHKDSK seja executado durante a inicializacao.
+echo.
+echo   Para CANCELAR o reinicio depois de agendado: abra outro
+echo   Prompt de Comando (admin) e execute:   shutdown /a
+echo ============================================================
+echo.
+
+:: --- Unica pausa: imediatamente antes do agendamento do reinicio ---
 echo Pressione qualquer tecla para prosseguir com o REINICIO do computador...
 pause >nul
 echo.
 
-echo ============================================================
-echo   Todas as verificacoes foram executadas.
-echo   O computador sera REINICIADO em 30 segundos para que o
-echo   CHKDSK seja executado durante a inicializacao.
-echo.
-echo   Para CANCELAR: abra outro Prompt de Comando (admin) e
-echo   execute o comando:   shutdown /a
-echo ============================================================
-echo.
-
 shutdown /r /t 30 /c "Reiniciando para concluir a verificacao de disco (CHKDSK) apos PC Health Check."
-
-:: Mantem a janela aberta para leitura das mensagens finais.
-:: O reinicio agendado acima continua contando em segundo plano.
-echo.
-pause
 
 endlocal
 exit /b
